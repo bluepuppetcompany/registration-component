@@ -1,0 +1,29 @@
+module RegistrationComponent
+  module Controls
+    module Registration
+      def self.example
+        registration = RegistrationComponent::Registration.build
+
+        registration.id = id
+
+        registration
+      end
+
+      def self.id
+        ID.example(increment: id_increment)
+      end
+
+      def self.id_increment
+        11
+      end
+
+      module Registered
+        def self.example
+          registration = Registration.example
+          registration.registered_time = Time::Effective::Raw.example
+          registration
+        end
+      end
+    end
+  end
+end
