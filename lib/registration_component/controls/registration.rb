@@ -17,6 +17,16 @@ module RegistrationComponent
         11
       end
 
+      def self.email_address
+        "jane@example.com"
+      end
+
+      module New
+        def self.example
+          RegistrationComponent::Registration.build
+        end
+      end
+
       module Registered
         def self.example
           registration = Registration.example
