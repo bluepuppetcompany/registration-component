@@ -41,6 +41,28 @@ module RegistrationComponent
 
         write.(claim, stream_name)
       end
+
+      handle EmailAccepted do |email_accepted|
+        registration_id = email_accepted.registration_id
+
+        registration, version = store.fetch(registration_id, include: :version)
+
+        if registration.registered?
+          logger.info(tag: :ignored) { "Event ignored (Event: #{email_accepted.message_type}, Registration ID: #{registration_id}, User ID: #{email_accepted.user_id})" }
+          return
+        end
+
+        time = clock.iso8601
+
+        stream_name = stream_name(registration_id)
+
+        registered = Registered.follow(email_accepted, exclude: [
+          :processed_time
+        ])
+        registered.time = time
+
+        write.(registered, stream_name, expected_version: version)
+      end
     end
   end
 end

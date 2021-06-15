@@ -9,7 +9,6 @@ module RegistrationComponent
           registered.user_id = User.id
           registered.email_address = Registration.email_address
           registered.time = Controls::Time::Effective.example
-          registered.processed_time = Controls::Time::Processed.example
 
           registered
         end

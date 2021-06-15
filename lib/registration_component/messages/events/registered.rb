@@ -8,7 +8,6 @@ module RegistrationComponent
         attribute :user_id, String
         attribute :email_address, String
         attribute :time, String
-        attribute :processed_time, String
       end
     end
   end
