@@ -16,6 +16,8 @@ context "Handle Commands" do
       email_address = register.email_address or fail
       effective_time = register.time or fail
 
+      registration_stream_name = "registration-#{registration_id}"
+
       handler.(register)
 
       writer = handler.write
@@ -30,7 +32,7 @@ context "Handle Commands" do
 
       test "Written to the registration stream" do
         written_to_stream = writer.written?(initiated) do |stream_name|
-          stream_name == "registration-#{registration_id}"
+          stream_name == registration_stream_name
         end
 
         assert(written_to_stream)
@@ -57,6 +59,12 @@ context "Handle Commands" do
           processed_time_iso8601 = Clock::UTC.iso8601(processed_time)
 
           assert(initiated.processed_time == processed_time_iso8601)
+        end
+      end
+
+      context "Metadata" do
+        test "Correlates with registration stream name" do
+          assert(initiated.metadata.correlates?(registration_stream_name))
         end
       end
     end

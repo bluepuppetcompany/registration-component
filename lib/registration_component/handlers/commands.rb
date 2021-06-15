@@ -35,6 +35,7 @@ module RegistrationComponent
 
         initiated = Initiated.follow(register)
         initiated.processed_time = time
+        initiated.metadata.correlation_stream_name = stream_name
 
         write.(initiated, stream_name, expected_version: version)
       end
