@@ -12,6 +12,7 @@ require 'registration_component/encode_email_address'
 
 require 'registration_component/handlers/commands'
 require 'registration_component/handlers/events'
+require 'registration_component/handlers/user_email_address/events'
 
 require 'registration_component/consumers/commands'
 require 'registration_component/consumers/events'
