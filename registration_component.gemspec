@@ -16,5 +16,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'eventide-postgres'
 
+  spec.add_runtime_dependency 'user_email_address-client'
+
   spec.add_development_dependency 'test_bench'
 end

@@ -1,5 +1,7 @@
 require 'eventide/postgres'
 
+require 'user_email_address/client'
+
 require 'registration_component/load'
 
 require 'registration_component/registration'
