@@ -24,7 +24,7 @@ module RegistrationComponent
 
         registration, version = store.fetch(registration_id, include: :version)
 
-        if registration.registered?
+        if registration.initiated?
           logger.info(tag: :ignored) { "Command ignored (Command: #{register.message_type}, Registration ID: #{registration_id}, User ID: #{register.user_id})" }
           return
         end
@@ -33,10 +33,10 @@ module RegistrationComponent
 
         stream_name = stream_name(registration_id)
 
-        registered = Registered.follow(register)
-        registered.processed_time = time
+        initiated = Initiated.follow(register)
+        initiated.processed_time = time
 
-        write.(registered, stream_name, expected_version: version)
+        write.(initiated, stream_name, expected_version: version)
       end
     end
   end

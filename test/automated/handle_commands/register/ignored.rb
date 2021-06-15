@@ -7,7 +7,7 @@ context "Handle Commands" do
 
       register = Controls::Commands::Register.example
 
-      registration = Controls::Registration::Registered.example
+      registration = Controls::Registration::Initiated.example
 
       handler.store.add(registration.id, registration)
 
@@ -15,12 +15,12 @@ context "Handle Commands" do
 
       writer = handler.write
 
-      registered = writer.one_message do |event|
-        event.instance_of?(Messages::Events::Registered)
+      initiated = writer.one_message do |event|
+        event.instance_of?(Messages::Events::Initiated)
       end
 
-      test "Registered Event is not Written" do
-        assert(registered.nil?)
+      test "Initiated Event is not Written" do
+        assert(initiated.nil?)
       end
     end
   end

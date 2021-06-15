@@ -17,12 +17,12 @@ context "Handle Commands" do
 
       writer = handler.write
 
-      registered = writer.one_message do |event|
-        event.instance_of?(Messages::Events::Registered)
+      initiated = writer.one_message do |event|
+        event.instance_of?(Messages::Events::Initiated)
       end
 
       test "Is entity version" do
-        written_to_stream = writer.written?(registered) do |_, expected_version|
+        written_to_stream = writer.written?(initiated) do |_, expected_version|
           expected_version == version
         end
 
