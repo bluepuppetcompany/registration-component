@@ -7,6 +7,7 @@ module RegistrationComponent
 
     def call
       Consumers::Commands.start("registration:command")
+      Consumers::Events.start("registration")
     end
   end
 end
