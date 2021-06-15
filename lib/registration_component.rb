@@ -16,5 +16,6 @@ require 'registration_component/handlers/user_email_address/events'
 
 require 'registration_component/consumers/commands'
 require 'registration_component/consumers/events'
+require 'registration_component/consumers/user_email_address/events'
 
 require 'registration_component/start'
