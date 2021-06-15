@@ -7,7 +7,11 @@ require 'registration_component/controls/version'
 
 require 'registration_component/controls/commands/register'
 
+require 'registration_component/controls/events/initiated'
+require 'registration_component/controls/events/email_accepted'
+require 'registration_component/controls/events/email_rejected'
 require 'registration_component/controls/events/registered'
+require 'registration_component/controls/events/cancelled'
 
 require 'registration_component/controls/write/register'
 
