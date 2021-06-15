@@ -5,6 +5,7 @@ module RegistrationComponent
         registration = RegistrationComponent::Registration.build
 
         registration.id = id
+        registration.initiated_time = Time::Effective::Raw.example
 
         registration
       end
@@ -27,10 +28,40 @@ module RegistrationComponent
         end
       end
 
+      module Initiated
+        def self.example
+          Registration.example
+        end
+      end
+
+      module EmailAccepted
+        def self.example
+          registration = Registration.example
+          registration.email_accepted_time = Time::Effective::Raw.example
+          registration
+        end
+      end
+
+      module EmailRejected
+        def self.example
+          registration = Registration.example
+          registration.email_rejected_time = Time::Effective::Raw.example
+          registration
+        end
+      end
+
       module Registered
         def self.example
           registration = Registration.example
           registration.registered_time = Time::Effective::Raw.example
+          registration
+        end
+      end
+
+      module Cancelled
+        def self.example
+          registration = Registration.example
+          registration.cancelled_time = Time::Effective::Raw.example
           registration
         end
       end
