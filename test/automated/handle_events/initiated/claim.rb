@@ -11,7 +11,7 @@ context "Handle Events" do
 
       initiated = Controls::Events::Initiated.example
 
-      registration_id = initiated.registration_id or fail
+      claim_id = initiated.claim_id or fail
       user_id = initiated.user_id or fail
       email_address = initiated.email_address or fail
 
@@ -39,7 +39,7 @@ context "Handle Events" do
 
       context "Attributes" do
         test "claim_id" do
-          assert(claim.claim_id == registration_id)
+          assert(claim.claim_id == claim_id)
         end
 
         test "encoded_email_address" do

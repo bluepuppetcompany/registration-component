@@ -4,15 +4,18 @@ module RegistrationComponent
       module Register
         def self.call(
           id: nil,
+          claim_id: nil,
           user_id: nil,
           email_address: nil
         )
           id ||= Registration.id
+          claim_id ||= ID.example
           user_id ||= User.id
           email_address ||= Registration.email_address
 
           register = Commands::Register.example(
             id: id,
+            claim_id: claim_id,
             user_id: user_id,
             email_address: email_address
           )

@@ -21,7 +21,7 @@ module RegistrationComponent
       category :registration
 
       handle Initiated do |initiated|
-        registration_id = initiated.registration_id
+        claim_id = initiated.claim_id
         user_id = initiated.user_id
         email_address = initiated.email_address
         encoded_email_address = encode_email_address(email_address)
@@ -31,7 +31,7 @@ module RegistrationComponent
         claim = Claim.new
         claim.metadata.follow(initiated.metadata)
 
-        claim.claim_id = registration_id
+        claim.claim_id = claim_id
         claim.encoded_email_address = encoded_email_address
         claim.email_address = email_address
         claim.user_id = user_id

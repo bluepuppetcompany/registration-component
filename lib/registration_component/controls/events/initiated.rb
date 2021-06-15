@@ -6,6 +6,7 @@ module RegistrationComponent
           initiated = RegistrationComponent::Messages::Events::Initiated.build
 
           initiated.registration_id = Registration.id
+          initiated.claim_id = ID.example
           initiated.user_id = User.id
           initiated.email_address = Registration.email_address
           initiated.time = Controls::Time::Effective.example

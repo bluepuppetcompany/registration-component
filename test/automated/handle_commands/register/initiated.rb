@@ -12,6 +12,7 @@ context "Handle Commands" do
       register = Controls::Commands::Register.example
 
       registration_id = register.registration_id or fail
+      claim_id = register.claim_id or fail
       user_id = register.user_id or fail
       email_address = register.email_address or fail
       effective_time = register.time or fail
@@ -41,6 +42,10 @@ context "Handle Commands" do
       context "Attributes" do
         test "registration_id" do
           assert(initiated.registration_id == registration_id)
+        end
+
+        test "claim_id" do
+          assert(initiated.claim_id == claim_id)
         end
 
         test "user_id" do
