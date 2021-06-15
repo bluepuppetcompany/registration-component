@@ -63,6 +63,28 @@ module RegistrationComponent
 
         write.(registered, stream_name, expected_version: version)
       end
+
+      handle EmailRejected do |email_rejected|
+        registration_id = email_rejected.registration_id
+
+        registration, version = store.fetch(registration_id, include: :version)
+
+        if registration.cancelled?
+          logger.info(tag: :ignored) { "Event ignored (Event: #{email_rejected.message_type}, Registration ID: #{registration_id}, User ID: #{email_rejected.user_id})" }
+          return
+        end
+
+        time = clock.iso8601
+
+        stream_name = stream_name(registration_id)
+
+        cancelled = Cancelled.follow(email_rejected, exclude: [
+          :processed_time
+        ])
+        cancelled.time = time
+
+        write.(cancelled, stream_name, expected_version: version)
+      end
     end
   end
 end

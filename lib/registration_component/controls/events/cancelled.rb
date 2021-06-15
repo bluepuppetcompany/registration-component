@@ -9,7 +9,6 @@ module RegistrationComponent
           cancelled.user_id = User.id
           cancelled.email_address = Registration.email_address
           cancelled.time = Controls::Time::Effective.example
-          cancelled.processed_time = Controls::Time::Processed.example
 
           cancelled
         end
