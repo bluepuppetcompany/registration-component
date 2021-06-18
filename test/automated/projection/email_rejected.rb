@@ -1,25 +1,25 @@
 require_relative '../automated_init'
 
 context "Projection" do
-  context "Registered" do
+  context "Email Rejected" do
     registration = Controls::Registration::New.example
 
-    assert(registration.registered_time.nil?)
+    assert(registration.email_rejected_time.nil?)
 
-    registered = Controls::Events::Registered.example
+    email_rejected = Controls::Events::EmailRejected.example
 
-    registration_id = registered.registration_id or fail
+    registration_id = email_rejected.registration_id or fail
 
-    Projection.(registration, registered)
+    Projection.(registration, email_rejected)
 
     test "ID is set" do
-      assert(registration.id == registered.registration_id)
+      assert(registration.id == email_rejected.registration_id)
     end
 
-    test "Registered time is converted and copied" do
-      registered_time = Time.parse(registered.time)
+    test "Email Rejected time is converted and copied" do
+      email_rejected_time = Time.parse(email_rejected.time)
 
-      assert(registration.registered_time == registered_time)
+      assert(registration.email_rejected_time == email_rejected_time)
     end
   end
 end
