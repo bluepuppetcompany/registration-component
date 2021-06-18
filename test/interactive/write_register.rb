@@ -1,10 +1,10 @@
 require_relative './interactive_init'
 
-registration_id = "abc"
+registration_id = Identifier::UUID::Random.get
 
-claim_id = "aaa"
+claim_id = Identifier::UUID::Random.get
 
-user_id = "123"
+user_id = Identifier::UUID::Random.get
 
 email_address = "jane@example.com"
 
