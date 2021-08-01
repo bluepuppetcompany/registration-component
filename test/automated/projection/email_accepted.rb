@@ -9,6 +9,7 @@ context "Projection" do
     email_accepted = Controls::Events::EmailAccepted.example
 
     registration_id = email_accepted.registration_id or fail
+    email_accepted_time_iso8601 = email_accepted.time or fail
 
     Projection.(registration, email_accepted)
 
@@ -17,7 +18,7 @@ context "Projection" do
     end
 
     test "Email Accepted time is converted and copied" do
-      email_accepted_time = Time.parse(email_accepted.time)
+      email_accepted_time = Time.parse(email_accepted_time_iso8601)
 
       assert(registration.email_accepted_time == email_accepted_time)
     end

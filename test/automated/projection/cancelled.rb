@@ -9,15 +9,16 @@ context "Projection" do
     cancelled = Controls::Events::Cancelled.example
 
     registration_id = cancelled.registration_id or fail
+    cancelled_time_iso8601 = cancelled.time or fail
 
     Projection.(registration, cancelled)
 
     test "ID is set" do
-      assert(registration.id == cancelled.registration_id)
+      assert(registration.id == registration_id)
     end
 
     test "Cancelled time is converted and copied" do
-      cancelled_time = Time.parse(cancelled.time)
+      cancelled_time = Time.parse(cancelled_time_iso8601)
 
       assert(registration.cancelled_time == cancelled_time)
     end
